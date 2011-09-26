@@ -18,6 +18,8 @@ module Hapistrano
 
       @ssh = Net::SSH.start(host, 'deploy')
       exec 'whoami'
+      exec 'sudo apt-get update'
+      exec 'sudo apt-get install -y git-core build-essential bison openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev'
     end
 
     private
