@@ -16,4 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Hapistrano::VERSION
 
   gem.add_dependency 'net-ssh', "~> 2.2.1"
+  gem.add_dependency 'highline'
 end
