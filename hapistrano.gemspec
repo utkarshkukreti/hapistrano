@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "hapistrano"
   gem.require_paths = ["lib"]
   gem.version       = Hapistrano::VERSION
+
+  gem.add_dependency 'net-ssh', "~> 2.2.1"
 end
