@@ -26,7 +26,7 @@ module Hapistrano
       exec 'sudo ruby-build 1.9.2-p290 /usr/local'
 
       exec 'gem install passenger'
-      exec 'passenger-install-nginx-module --auto --auto-download --prefix="/etc/nginx"'
+      exec 'passenger-install-nginx-module --auto --auto-download --prefix="/opt/nginx"'
     end
 
     private
