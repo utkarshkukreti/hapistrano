@@ -37,7 +37,13 @@ module Hapistrano
       exec 'sudo mv nginx-init.d.sh /etc/init.d/nginx'
       exec 'sudo chmod +x /etc/init.d/nginx'
       exec 'sudo /usr/sbin/update-rc.d -f nginx defaults'
-      exec 'sudo service nginx start'
+      exec 'sudo service nginx restart'
+
+      exec 'sudo apt-get install postgresql'
+      # Use utf-8
+      exec 'sudo pg_dropcluster --stop 8.4 main'
+      exec 'sudo pg_createcluster --start -e UTF-8 8.4 main'
+      exec 'sudo /etc/init.d/postgresql-8.4 restart'
     end
 
     private
