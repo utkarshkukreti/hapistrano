@@ -30,7 +30,14 @@ module Hapistrano
       exec 'rvm --default use 1.9.2'
 
       exec 'gem install passenger'
-      exec 'rvmsudo passenger-install-nginx-module --auto --auto-download --prefix="/etc/nginx"'
+      exec 'rvmsudo passenger-install-nginx-module --auto --auto-download --prefix="/opt/nginx"'
+
+      nginx_init_d = File.read(File.expand_path('../templates/nginx-init.d.sh', __FILE__))
+      exec "echo #{esc(nginx_init_d)} > nginx-init.d.sh"
+      exec 'sudo mv nginx-init.d.sh /etc/init.d/nginx'
+      exec 'sudo chmod +x /etc/init.d/nginx'
+      exec 'sudo /usr/sbin/update-rc.d -f nginx defaults'
+      exec 'sudo service nginx start'
     end
 
     private
