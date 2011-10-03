@@ -36,7 +36,9 @@ module Hapistrano
     private
     def exec(cmd)
       puts "*** Executing #{cmd}"
-      puts @ssh.exec!(cmd)
+      @ssh.exec!(cmd) do |channel, stream, data|
+        puts data
+      end
     end
 
     def esc(cmd)
