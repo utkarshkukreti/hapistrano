@@ -1,6 +1,7 @@
 module Hapistrano
   class Bootstrap
     def initialize(argv)
+      argv.shift
       host = argv.shift
       @verbose = argv.shift
       begin
@@ -66,6 +67,10 @@ module Hapistrano
       @ssh.exec!(cmd) do |channel, stream, data|
         puts data if @verbose
       end
+    end
+
+    def log(msg)
+      puts msg
     end
 
     def esc(cmd)
